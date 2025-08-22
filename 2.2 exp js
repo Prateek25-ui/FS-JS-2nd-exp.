@@ -1,0 +1,120 @@
+html code :
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Product Filter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+    }
+    h2 {
+      color: #333;
+    }
+    select {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+    }
+    .product {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .product h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+    }
+    .product p {
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h2>Dynamic Product Filter</h2>
+
+  <!-- Dropdown for filtering -->
+  <label for="filter">Filter by Category:</label>
+  <select id="filter">
+    <option value="all">All</option>
+    <option value="shoes">Shoes</option>
+    <option value="shirts">Shirts</option>
+    <option value="gadgets">Gadgets</option>
+  </select>
+
+  <!-- Product List -->
+  <div class="products" id="productList">
+    <div class="product" data-category="shoes">
+      <h3>Running Shoes</h3>
+      <p>Category: Shoes</p>
+    </div>
+    <div class="product" data-category="shirts">
+      <h3>Cotton Shirt</h3>
+      <p>Category: Shirts</p>
+    </div>
+    <div class="product" data-category="gadgets">
+      <h3>Smart Watch</h3>
+      <p>Category: Gadgets</p>
+    </div>
+    <div class="product" data-category="gadgets">
+      <h3>Wireless Earbuds</h3>
+      <p>Category: Gadgets</p>
+    </div>
+    <div class="product" data-category="shoes">
+      <h3>Leather Boots</h3>
+      <p>Category: Shoes</p>
+    </div>
+  </div>
+
+  <script>
+    // Select elements
+    const filter = document.getElementById("filter");
+    const products = document.querySelectorAll(".product");
+
+    // Add event listener
+    filter.addEventListener("change", () => {
+      const selected = filter.value;
+
+      products.forEach(product => {
+        // Show all if "all" is selected
+        if (selected === "all" || product.dataset.category === selected) {
+          product.style.display = "block";
+        } else {
+          product.style.display = "none";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+js code :
+// Select elements
+const filter = document.getElementById("filter");
+const products = document.querySelectorAll(".product");
+
+// Add event listener for dropdown change
+filter.addEventListener("change", () => {
+  const selected = filter.value;
+
+  products.forEach(product => {
+    // Show all if "all" is selected
+    if (selected === "all" || product.dataset.category === selected) {
+      product.style.display = "block";
+    } else {
+      product.style.display = "none";
+    }
+  });
+});
